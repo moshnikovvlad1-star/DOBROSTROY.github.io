@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добрострой - Шлифовка и покраска деревянных домов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF6F00',
+                            dark: '#121212',
+                            light: '#1E1E1E',
+                            text: '#E0E0E0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .before-after-container {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        .img-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .img-before-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .img-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            max-width: none;
+            object-fit: cover;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: #FF6F00;
+            z-index: 20;
+            transform: translateX(-50%);
+            cursor: ew-resize;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #FF6F00;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-brand-text font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-brand-dark/90 border-b border-brand-orange/20 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-tighter">
+                ДОБРО<span class="text-brand-orange">СТРОЙ</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#services" class="hover:text-brand-orange transition-colors">Услуги</a>
+                <a href="#technology" class="hover:text-brand-orange transition-colors">Технология</a>
+                <a href="#portfolio" class="hover:text-brand-orange transition-colors">Портфолио</a>
+                <a href="#process" class="hover:text-brand-orange transition-colors">Как мы работаем</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="tel:89778470305" class="hidden lg:block font-bold text-lg hover:text-brand-orange transition-colors">8 (977) 847-03-05</a>
+                <a href="#callback" class="bg-brand-orange hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-sm transition-all shadow-lg shadow-brand-orange/20">
+                    Заказать расчет
+                </a>
+            </div>
+        </div>
+        <div class="h-1 bg-brand-orange w-full"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-15"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent"></div>
+        
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <span class="text-brand-orange font-bold tracking-widest uppercase text-sm">Профессиональная отделка деревянных домов</span>
+            <h1 class="text-4xl lg:text-7xl font-extrabold mt-6 mb-8 tracking-tight leading-tight">
+                Шлифовка и покраска <br/>
+                <span class="text-brand-orange">деревянных домов из бруса</span> под ключ
+            </h1>
+            <p class="text-lg lg:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Подарим вашему дому вторую жизнь, защитим от разрушения и сделаем его безупречно красивым за срок от 7 дней.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#callback" class="bg-brand-orange hover:bg-orange-700 text-white font-bold py-4 px-10 rounded-sm text-lg transition-all shadow-xl shadow-brand-orange/20">
+                    Рассчитать стоимость
+                </a>
+                <a href="#portfolio" class="bg-brand-light hover:bg-gray-700 text-white font-bold py-4 px-10 rounded-sm text-lg transition-all border border-gray-600">
+                    Смотреть варианты до/после
+                </a>
+            </div>
+            
+            <!-- Trust Badges -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-brand-orange/20 pt-8 max-w-4xl mx-auto">
+                <div>
+                    <div class="text-3xl font-bold text-brand-orange mb-1">5+ лет</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider">Опыта работы</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-brand-orange mb-1">150+</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider">Сданных домов</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-brand-orange mb-1">3 года</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider">Официальной гарантии</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-brand-orange mb-1">По ГОСТу</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider">Качество материалов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-brand-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Наши услуги</h2>
+                <div class="h-1 w-20 bg-brand-orange mx-auto"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Service 1 -->
+                <div class="bg-brand-dark p-8 border-l-4 border-brand-orange hover:shadow-2xl hover:shadow-brand-orange/5 transition-all">
+                    <div class="w-12 h-12 bg-brand-orange/10 flex items-center justify-center rounded-sm mb-6">
+                        <i class="fa-solid fa-brush text-brand-orange text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Профессиональная шлифовка бруса</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Удаляем старое покрытие, потемнения и ворс с фасада дома из профилированного и клеистого бруса. Гарантируем идеально гладкую поверхность.
+                    </p>
+                    <ul class="text-gray-400 space-y-3 mb-8">
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Глубокая и финишная шлифовка фасадов из бруса</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Межвенцовая обработка и выравнивание углов</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Полное обеспыливание деревянных стен</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-brand-dark p-8 border-l-4 border-brand-orange hover:shadow-2xl hover:shadow-brand-orange/5 transition-all">
+                    <div class="w-12 h-12 bg-brand-orange/10 flex items-center justify-center rounded-sm mb-6">
+                        <i class="fa-solid fa-palette text-brand-orange text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Качественная покраска бруса</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Защищаем дома из бруса от УФ-лучей, влаги и грибка. Наносим экологичные масла, лазури и антисептики ведущих брендов.
+                    </p>
+                    <ul class="text-gray-400 space-y-3 mb-8">
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Нанесение защитного грунта-антисептика</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Покраска фасада бруса в 2-3 слоя</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Герметизация и защита торцов бруса</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-24 bg-brand-dark border-t border-b border-brand-orange/10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange font-bold uppercase tracking-wider text-sm">Строго по стандартам</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Технология выполнения работ</h2>
+                <div class="h-1 w-20 bg-brand-orange mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-brand-light p-6 rounded-sm border-t-2 border-brand-orange relative">
+                    <div class="text-4xl font-black text-brand-orange/20 absolute top-4 right-4">01</div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-orange">1. Диагностика дома</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Замеряем влажность бруса влагомером (нормативы до 18-20%). Защищаем окна, крышу и фурнитуру специальной укрывочной пленкой.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-brand-light p-6 rounded-sm border-t-2 border-brand-orange relative">
+                    <div class="text-4xl font-black text-brand-orange/20 absolute top-4 right-4">02</div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-orange">2. Шлифовка бруса</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Снятие старого слоя и дефектов древесины с последующим финишным выравниванием зерном P100-P120 для идеальной гладкости.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-brand-light p-6 rounded-sm border-t-2 border-brand-orange relative">
+                    <div class="text-4xl font-black text-brand-orange/20 absolute top-4 right-4">03</div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-orange">3. Обеспыливание и грунт</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Очищаем древесину промышленными пылесосами и воздуходувками. Сразу наносим глубокопроникающий антисептик для защиты бруса.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-brand-light p-6 rounded-sm border-t-2 border-brand-orange relative">
+                    <div class="text-4xl font-black text-brand-orange/20 absolute top-4 right-4">04</div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-orange">4. Покраска и защита</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Послойное нанесение фасадного масла или лазури кистями вручную с межслойной шлифовкой для максимального срока службы.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section with Updated Cards (Wooden Houses Only, Natural Color Comparison) -->
+    <section id="portfolio" class="py-24 bg-brand-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange font-bold uppercase tracking-wider text-sm">Интерактивное портфолио</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Наши работы: Дома из бруса и бревна</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Потяните оранжевый ползунок: слева — дом до обработки (необработанное/выгоревшее дерево), справа — готовый результат после шлифовки и покраски.</p>
+                <div class="h-1 w-20 bg-brand-orange mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+
+                <!-- Card 1: Дом из клееного бруса -->
+                <div class="bg-brand-dark p-4 rounded-sm border border-brand-orange/20 hover:border-brand-orange/50 transition-all">
+                    <div class="relative h-72 rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Деревянный дом из бруса">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <span class="inline-block bg-brand-orange text-white text-[10px] font-bold px-2 py-1 rounded mb-2">КЛЕЕНЫЙ БРУС</span>
+                            <h3 class="text-xl font-bold text-white">Дом из клееного бруса</h3>
+                            <p class="text-gray-300 text-xs mt-2">Шлифовка фасада и защитное покрытие с сохранением текстуры древесины.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Новый деревянный дом -->
+                <div class="bg-brand-dark p-4 rounded-sm border border-brand-orange/20 hover:border-brand-orange/50 transition-all">
+                    <div class="relative h-72 rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Современный деревянный дом">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <span class="inline-block bg-brand-orange text-white text-[10px] font-bold px-2 py-1 rounded mb-2">ДЕРЕВЯННЫЙ ДОМ</span>
+                            <h3 class="text-xl font-bold text-white">Дом из натурального дерева</h3>
+                            <p class="text-gray-300 text-xs mt-2">Обработка древесины, защита фасада и аккуратная финишная покраска.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Дом из оцилиндрованного бревна -->
+                <div class="bg-brand-dark p-4 rounded-sm border border-brand-orange/20 hover:border-brand-orange/50 transition-all">
+                    <div class="relative h-72 rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1200&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Деревянный дом из бревна">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <span class="inline-block bg-brand-orange text-white text-[10px] font-bold px-2 py-1 rounded mb-2">ОЦИЛИНДРОВАННОЕ БРЕВНО</span>
+                            <h3 class="text-xl font-bold text-white">Дом из оцилиндрованного бревна</h3>
+                            <p class="text-gray-300 text-xs mt-2">Полная обработка сруба, грунтовка и защитное восковое покрытие.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section id="process" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange font-bold uppercase tracking-wider text-sm">Забота на каждом этапе</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Как мы работаем</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Мы берем все хлопоты на себя, чтобы ремонт вашего дома из бруса стал приятным и легким событием.</p>
+                <div class="h-1 w-20 bg-brand-orange mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-brand-light p-8 rounded-sm border border-brand-orange/20 text-center hover:border-brand-orange transition-all">
+                    <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">1. Выезд и честный замер</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Бесплатно выезжаем на объект, замеряем площадь бруса и составляем прозрачную смету без скрытых платежей.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-brand-light p-8 rounded-sm border border-brand-orange/20 text-center hover:border-brand-orange transition-all">
+                    <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2. Бережное отношение и порядок</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Закрываем пленкой окна и газоны вокруг дома. Каждый день убираем за собой всю пыль и мусор после шлифовки.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-brand-light p-8 rounded-sm border border-brand-orange/20 text-center hover:border-brand-orange transition-all">
+                    <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-face-smile-beam"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3. Идеальный результат</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Вы лично принимаете обновленный дом, получаете гарантию 3 года и рекомендации по уходу за брусом.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Form -->
+    <section id="callback" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-orange opacity-5"></div>
+        <div class="container mx-auto px-4 relative z-10 max-w-4xl">
+            <div class="bg-brand-light p-12 shadow-2xl border border-brand-orange/20 text-center">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Преобразите ваш дом из бруса уже на этой неделе!</h2>
+                <p class="text-gray-400 mb-6">Оставьте заявку на бесплатную консультацию и выезд мастера с образцами выкрасов.</p>
+                
+                <div class="mb-8">
+                    <a href="tel:89778470305" class="text-2xl lg:text-3xl font-extrabold text-brand-orange hover:underline">
+                        <i class="fa-solid fa-phone mr-2"></i>8 (977) 847-03-05
+                    </a>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Ваше имя" class="w-full bg-brand-dark border border-gray-600 focus:border-brand-orange outline-none p-4 transition-all" required>
+                        <input type="tel" placeholder="Номер телефона" class="w-full bg-brand-dark border border-gray-600 focus:border-brand-orange outline-none p-4 transition-all" required>
+                    </div>
+                    <select class="w-full bg-brand-dark border border-gray-600 focus:border-brand-orange outline-none p-4 transition-all text-gray-400" required>
+                        <option value="" disabled selected>Выберите тип работ</option>
+                        <option value="only_sanding">Шлифовка бруса</option>
+                        <option value="only_painting">Покраска бруса</option>
+                        <option value="both">Шлифовка + Покраска под ключ</option>
+                    </select>
+                    <button type="submit" class="w-full bg-brand-orange hover:bg-orange-700 text-white font-bold py-5 px-10 text-lg transition-all shadow-lg shadow-brand-orange/20">
+                        Получить бесплатный расчет
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-gray-800 py-12">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-gray-400">
+            <div class="text-2xl font-bold tracking-tighter mb-4 md:mb-0">
+                ДОБРО<span class="text-brand-orange">СТРОЙ</span>
+            </div>
+            <div class="mb-4 md:mb-0">
+                Телефон: <a href="tel:89778470305" class="text-brand-orange font-bold">8 (977) 847-03-05</a>
+            </div>
+            <div>
+                © 2026 Добрострой. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Slider Script -->
+    <script>
+        function initBeforeAfter(containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            
+            const beforeWrapper = container.querySelector('.img-before-wrapper');
+            const beforeImg = container.querySelector('.img-before');
+            const handle = container.querySelector('.slider-handle');
+
+            function updateImageWidth() {
+                beforeImg.style.width = container.offsetWidth + 'px';
+            }
+
+            window.addEventListener('resize', updateImageWidth);
+            updateImageWidth();
+
+            let isDragging = false;
+
+            function moveSlider(x) {
+                const rect = container.getBoundingClientRect();
+                let position = x - rect.left;
+                if (position < 0) position = 0;
+                if (position > rect.width) position = rect.width;
+                
+                const percentage = (position / rect.width) * 100;
+                beforeWrapper.style.width = percentage + '%';
+                handle.style.left = percentage + '%';
+            }
+
+            container.addEventListener('mousedown', () => isDragging = true);
+            window.addEventListener('mouseup', () => isDragging = false);
+            container.addEventListener('mousemove', (e) => {
+                if (isDragging) moveSlider(e.clientX);
+            });
+
+            container.addEventListener('touchstart', () => isDragging = true);
+            window.addEventListener('touchend', () => isDragging = false);
+            container.addEventListener('touchmove', (e) => {
+                if (isDragging) moveSlider(e.touches[0].clientX);
+            });
+        }
+
+        // Initialize active portfolio sliders
+        for (let i = 1; i <= 3; i++) {
+            initBeforeAfter('slider-' + i);
+        }
+    </script>
+</body>
+</html>
